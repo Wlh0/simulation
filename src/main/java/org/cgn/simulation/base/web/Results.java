@@ -1,7 +1,7 @@
 package org.cgn.simulation.base.web;
 
-import org.cgn.base.exception.AbstractException;
-import org.cgn.base.exception.BaseErrorCode;
+import org.cgn.simulation.base.exception.AbstractException;
+import org.cgn.simulation.base.exception.BaseErrorCode;
 
 import java.util.Optional;
 

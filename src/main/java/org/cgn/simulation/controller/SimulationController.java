@@ -1,31 +1,50 @@
 package org.cgn.simulation.controller;
 
-import org.cgn.simulation.base.designpattern.JarLauncherFactory;
+import lombok.RequiredArgsConstructor;
+import org.cgn.simulation.base.log.annotation.ILog;
 import org.cgn.simulation.base.web.Result;
 import org.cgn.simulation.base.web.Results;
-import org.cgn.simulation.utils.JarLauncher;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.cgn.simulation.dto.req.RunBenchmarkReqDTO;
+import org.cgn.simulation.service.SimulationService;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-
+@RestController
+@RequiredArgsConstructor
 public class SimulationController {
-    private final JarLauncher jarLauncher = JarLauncherFactory.getInstance();
+    private final SimulationService simulationService;
 
-    @PostMapping("/run")
-    public Result<Void> startSimulation(@RequestParam String configFilename) {
-        try {
-            String processKey = jarLauncher.launchJar(configFilename);
-//            TODO: 返回的实体类需要定义一下
-            return Results.success();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    @GetMapping("/search")
+    public Result<String> pageListQuery(){
+        return Results.success(simulationService.pageListQuery());
     }
 
+    @ILog
+    @PostMapping("/run")
+    public Result<String> startSimulation(@RequestBody String configFilename) {
+        return Results.success(simulationService.runConfig(configFilename));
+    }
+
+    @ILog
     @PostMapping("/stop")
-    public String stopSimulation(@RequestParam String processKey) {
-        jarLauncher.stopProcess(processKey);
-        return "停止成功";
+    public Result<Object> stopSimulation(@RequestParam String processKey) {
+        return Results.success(simulationService.stopSimulation(processKey));
+    }
+
+    @ILog
+    @PostMapping("create")
+    public Result<Object> createConfigFile(@RequestBody RunBenchmarkReqDTO runBenchmarkReqDTO) {
+        return Results.success(simulationService.createConfigFile(runBenchmarkReqDTO));
+    }
+
+    @ILog
+    @PostMapping("/update")
+    public Result<Object> updateConfigFile(@RequestBody RunBenchmarkReqDTO runBenchmarkReqDTO) {
+        return Results.success(simulationService.updateConfigFile(runBenchmarkReqDTO));
+    }
+
+    @ILog
+    @DeleteMapping("/delete")
+    public Result<Object> deleteConfigFile(@RequestParam String configFileName) {
+        return Results.success(simulationService.deleteConfigFile(configFileName));
     }
 }
