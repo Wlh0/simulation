@@ -1,4 +1,4 @@
-package org.cgn.simulation.base.exception;
+package org.cgn.simulation.base.web.exception;
 
 public interface IErrorCode {
 

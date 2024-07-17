@@ -15,7 +15,7 @@ public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 5679018624309023727L;
 
-    public static final String SUCCESS_CODE = "0";
+    public static final String SUCCESS_CODE = "200";
 
     private String code;
 
@@ -23,7 +23,6 @@ public class Result<T> implements Serializable {
 
     private T data;
 
-    private String requestId;
 
     public boolean isSuccess() {
         return SUCCESS_CODE.equals(code);

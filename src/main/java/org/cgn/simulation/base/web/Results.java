@@ -1,7 +1,7 @@
 package org.cgn.simulation.base.web;
 
-import org.cgn.simulation.base.exception.AbstractException;
-import org.cgn.simulation.base.exception.BaseErrorCode;
+import org.cgn.simulation.base.web.exception.AbstractException;
+import org.cgn.simulation.base.web.exception.BaseErrorCode;
 
 import java.util.Optional;
 
@@ -31,6 +31,11 @@ public final class Results {
                 .setMessage(errorMessage);
     }
 
+    protected static Result<Void> failure() {
+        return new Result<Void>()
+                .setCode(BaseErrorCode.SERVICE_ERROR.code())
+                .setMessage(BaseErrorCode.SERVICE_ERROR.message());
+    }
     protected static Result<Void> failure(String errorCode, String errorMessage) {
         return new Result<Void>()
                 .setCode(errorCode)

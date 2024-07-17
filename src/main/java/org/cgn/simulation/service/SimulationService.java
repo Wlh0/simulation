@@ -1,18 +1,23 @@
 package org.cgn.simulation.service;
 
 import org.cgn.simulation.dto.req.RunBenchmarkReqDTO;
+import org.cgn.simulation.dto.resp.ConfigFileListRespDTO;
+
+import java.util.List;
 
 public interface SimulationService {
 
-    String runConfig(String configFilename);
+    String runConfig(String fileName);
 
-    String pageListQuery();
+    ConfigFileListRespDTO pageListQuery();
 
-    Object createConfigFile(RunBenchmarkReqDTO runBenchmarkReqDTO);
+    RunBenchmarkReqDTO createConfigFile(RunBenchmarkReqDTO runBenchmarkReqDTO);
 
-    Object stopSimulation(String processKey);
+    Object stopSimulation(String fileName);
 
     Object updateConfigFile(RunBenchmarkReqDTO runBenchmarkReqDTO);
 
-    Object deleteConfigFile(String configFileName);
+    String deleteConfigFile(String fileName);
+
+    List<String> isCompleted(List<String> fileNames);
 }

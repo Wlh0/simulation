@@ -1,4 +1,4 @@
-package org.cgn.simulation.base.designpattern;
+package org.cgn.simulation.base.designpattern.singleton;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;

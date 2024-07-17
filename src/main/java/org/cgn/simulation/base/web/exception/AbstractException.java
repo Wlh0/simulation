@@ -1,4 +1,4 @@
-package org.cgn.simulation.base.exception;
+package org.cgn.simulation.base.web.exception;
 
 import lombok.Getter;
 import org.springframework.util.StringUtils;
