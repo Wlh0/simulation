@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * 肯定是要异步执行的
+ *
  */
 public class JarLauncherUtil {
 
